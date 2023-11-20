@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -11,6 +12,7 @@ namespace Monogame_Lesson_3___Animation
         Texture2D greyTex, orangeTex, creamTex, brownTex;
         Rectangle greyRect, orangeRect, creamRect, brownRect;
         Vector2 greySpeed, orangeSpeed, creamSpeed, brownSpeed;
+        SoundEffect coo;
 
         public Game1()
         {
@@ -44,6 +46,8 @@ namespace Monogame_Lesson_3___Animation
             orangeTex = Content.Load<Texture2D>("tribbleOrange");
             brownTex = Content.Load<Texture2D>("tribbleBrown");
             creamTex = Content.Load<Texture2D>("tribbleCream");
+            coo = Content.Load<SoundEffect>("tribble_coo");
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -59,10 +63,12 @@ namespace Monogame_Lesson_3___Animation
             if (greyRect.Right >= _graphics.PreferredBackBufferWidth || greyRect.Left <= 0)
             {
                 greySpeed.X *= -1;
+                coo.Play();
             }
             else if (greyRect.Bottom >= _graphics.PreferredBackBufferHeight || greyRect.Top <= 0)
             {
                 greySpeed.Y *= -1;
+                coo.Play();
             }
 
             orangeRect.X += (int)orangeSpeed.X;
@@ -70,10 +76,12 @@ namespace Monogame_Lesson_3___Animation
             if (orangeRect.Right >= _graphics.PreferredBackBufferWidth || orangeRect.Left <= 0)
             {
                 orangeSpeed.X *= -1;
+                coo.Play();
             }
             else if (orangeRect.Bottom >= _graphics.PreferredBackBufferHeight || orangeRect.Top <= 0)
             {
                 orangeSpeed.Y *= -1;
+                coo.Play();
             }
 
             brownRect.X += (int)brownSpeed.X;
@@ -81,10 +89,12 @@ namespace Monogame_Lesson_3___Animation
             if (brownRect.Right >= _graphics.PreferredBackBufferWidth || brownRect.Left <= 0)
             {
                 brownSpeed.X *= -1;
+                coo.Play();
             }
             else if (brownRect.Bottom >= _graphics.PreferredBackBufferHeight || brownRect.Top <= 0)
             {
                 brownSpeed.Y *= -1;
+                coo.Play();
             }
 
             creamRect.X += (int)creamSpeed.X;
@@ -92,10 +102,12 @@ namespace Monogame_Lesson_3___Animation
             if (creamRect.Right >= _graphics.PreferredBackBufferWidth || creamRect.Left <= 0)
             {
                 creamSpeed.X *= -1;
+                coo.Play();
             }
             else if (creamRect.Bottom >= _graphics.PreferredBackBufferHeight || creamRect.Top <= 0)
             {
                 creamSpeed.Y *= -1;
+                coo.Play();
             }
             base.Update(gameTime);
         }
