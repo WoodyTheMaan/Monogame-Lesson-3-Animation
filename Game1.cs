@@ -140,7 +140,7 @@ namespace Monogame_Lesson_3___Animation
             _spriteBatch.Begin();
             if (screen == Screen.Intro)
             {
-                _spriteBatch.Draw(introScreenThing, new Rectangle(0, 0, 800, 500), Color.White);
+                _spriteBatch.Draw(introScreenThing, new Rectangle(0, 0, 800, 600), Color.White);
             }
             else if (screen == Screen.TribbleYard)
             {
