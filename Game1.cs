@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using game1.cs;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -9,10 +10,12 @@ namespace Monogame_Lesson_3___Animation
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        Tribble tribble1;
         Texture2D greyTex, orangeTex, creamTex, brownTex, introScreenThing;
         Rectangle greyRect, orangeRect, creamRect, brownRect;
         Vector2 greySpeed, orangeSpeed, creamSpeed, brownSpeed;
         SoundEffect coo;
+        SoundEffectInstance backgroundMusic;
         Screen screen;
         MouseState mouseState;
         enum Screen
@@ -53,6 +56,7 @@ namespace Monogame_Lesson_3___Animation
             brownTex = Content.Load<Texture2D>("tribbleBrown");
             creamTex = Content.Load<Texture2D>("tribbleCream");
             introScreenThing = Content.Load<Texture2D>("tribble_intro");
+            backgroundMusic = Content.Load<SoundEffect>("Tribblebackgroundmusic").CreateInstance();
             coo = Content.Load<SoundEffect>("tribble_coo");
 
 
@@ -76,6 +80,7 @@ namespace Monogame_Lesson_3___Animation
 
             else if (screen == Screen.TribbleYard)
             {
+                backgroundMusic.Play();
                 greyRect.X += (int)greySpeed.X;
                 greyRect.Y += (int)greySpeed.Y;
                 if (greyRect.Right >= _graphics.PreferredBackBufferWidth || greyRect.Left <= 0)

@@ -79,6 +79,12 @@
 /processorParam:TextureFormat=Color
 /build:tribble_intro.jpg
 
+#begin Tribblebackgroundmusic.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Tribblebackgroundmusic.mp3
+
 #begin tribbleBrown.png
 /importer:TextureImporter
 /processor:TextureProcessor
