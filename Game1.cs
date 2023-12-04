@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Threading;
 
 namespace Monogame_Lesson_3___Animation
 {
@@ -11,17 +12,19 @@ namespace Monogame_Lesson_3___Animation
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         Tribble tribble1;
-        Texture2D greyTex, orangeTex, creamTex, brownTex, introScreenThing;
-        Rectangle greyRect, orangeRect, creamRect, brownRect;
+        Texture2D greyTex, orangeTex, creamTex, brownTex, introScreenThing, endScreen;
+        Rectangle greyRect, orangeRect, creamRect, brownRect, endScreenRect;
         Vector2 greySpeed, orangeSpeed, creamSpeed, brownSpeed;
         SoundEffect coo;
         SoundEffectInstance backgroundMusic;
         Screen screen;
+        float endTime, seconds;
         MouseState mouseState;
         enum Screen
         {
             Intro,
-            TribbleYard
+            TribbleYard,
+            end
         }
         public Game1()
         {
@@ -45,6 +48,7 @@ namespace Monogame_Lesson_3___Animation
             creamSpeed = new Vector2(6, 1);
             brownRect = new Rectangle(400, 350, 100, 100);
             brownSpeed = new Vector2(0, 9);
+            
             base.Initialize();
         }
 
@@ -58,6 +62,7 @@ namespace Monogame_Lesson_3___Animation
             introScreenThing = Content.Load<Texture2D>("tribble_intro");
             backgroundMusic = Content.Load<SoundEffect>("Tribblebackgroundmusic").CreateInstance();
             coo = Content.Load<SoundEffect>("tribble_coo");
+            endScreen = Content.Load<Texture2D>("END SCREEN");
 
 
             // TODO: use this.Content to load your game content here
@@ -77,7 +82,7 @@ namespace Monogame_Lesson_3___Animation
                     screen = Screen.TribbleYard;
 
             }
-
+            
             else if (screen == Screen.TribbleYard)
             {
                 backgroundMusic.Play();
@@ -132,6 +137,14 @@ namespace Monogame_Lesson_3___Animation
                     creamSpeed.Y *= -1;
                     coo.Play();
                 }
+                seconds += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (seconds > 15)
+                { 
+                    screen = Screen.end;
+                    
+                   
+                } 
+                
             }
            
             base.Update(gameTime);
@@ -154,6 +167,11 @@ namespace Monogame_Lesson_3___Animation
                 _spriteBatch.Draw(orangeTex, orangeRect, Color.White);
                 _spriteBatch.Draw(creamTex, creamRect, Color.White);
             }
+            else if (screen == Screen.end)
+            {
+                _spriteBatch.Draw(endScreen, new Rectangle(0,0,800,600), Color.White);
+            }
+           
            
             _spriteBatch.End();
             base.Draw(gameTime);
